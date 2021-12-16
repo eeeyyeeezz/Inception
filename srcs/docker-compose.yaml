@@ -7,13 +7,13 @@ volumes:
     driver_opts:
       type: none
       o: bind 
-      device: /Users/gmorra/Desktop/NNN/wp
+      device: /Users/gmorra/Desktop/LOL/wp
   db:
     driver: local
     driver_opts:
       type: none
       o: bind 
-      device: /Users/gmorra/Desktop/NNN/db
+      device: /Users/gmorra/Desktop/LOL/db
 
 networks:
   aboba:
