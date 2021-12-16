@@ -7,31 +7,31 @@ volumes:
     driver_opts:
       type: none
       o: bind 
-      device: /Users/gmorra/Desktop/MM/wp
-  # db:
-  #   driver: local
-  #   driver_opts:
-  #     type: none
-  #     o: bind 
-  #     device: /home/archie/Desktop/Data/db
+      device: /Users/gmorra/Desktop/XXX/wp
+  db:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind 
+      device: /Users/gmorra/Desktop/XXX/db
 
 networks:
   aboba:
     driver: bridge
  
 services:
-  # mariadb:
-  #   build: ./requirements/mariadb
-  #   container_name: mariadb
-  #   networks:
-  #      - aboba
-  #   volumes:
-  #     - db:/var/lib/mysql
-  #   env_file:
-  #     - .env
-  #   restart: always
-  #   tty:
-  #     true
+  mariadb:
+    build: ./requirements/mariadb
+    container_name: mariadb
+    networks:
+       - aboba
+    volumes:
+      - db:/var/lib/mysql
+    env_file:
+      - .env
+    restart: always
+    tty:
+      true
 
   wordpress:
     build: ./requirements/wordpress
@@ -43,8 +43,8 @@ services:
     env_file:
       - .env
     restart: always
-    # depends_on:
-    #   - mariadb
+    depends_on:
+      - mariadb
     tty: true
 
   nginx:
