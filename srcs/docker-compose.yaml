@@ -1,0 +1,61 @@
+
+version: '3.3'
+
+volumes:
+  wp:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind 
+      device: /Users/gmorra/Desktop/MM/wp
+  # db:
+  #   driver: local
+  #   driver_opts:
+  #     type: none
+  #     o: bind 
+  #     device: /home/archie/Desktop/Data/db
+
+networks:
+  aboba:
+    driver: bridge
+ 
+services:
+  # mariadb:
+  #   build: ./requirements/mariadb
+  #   container_name: mariadb
+  #   networks:
+  #      - aboba
+  #   volumes:
+  #     - db:/var/lib/mysql
+  #   env_file:
+  #     - .env
+  #   restart: always
+  #   tty:
+  #     true
+
+  wordpress:
+    build: ./requirements/wordpress
+    container_name: wordpress
+    networks:
+      - aboba
+    volumes:
+      - wp:/var/www/html
+    env_file:
+      - .env
+    restart: always
+    # depends_on:
+    #   - mariadb
+    tty: true
+
+  nginx:
+    build: ./requirements/nginx
+    container_name: nginx
+    ports:
+      - 443:443
+    volumes:
+      - wp:/var/www/html
+    networks:
+      - aboba
+    restart: always
+    depends_on:
+      - wordpress
