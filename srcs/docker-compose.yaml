@@ -7,13 +7,13 @@ volumes:
     driver_opts:
       type: none
       o: bind 
-      device: /home/daniil/Desktop/Data/wp
+      device: /home/eeeyyeeezz/Desktop/Data/wp
   db:
     driver: local
     driver_opts:
       type: none
       o: bind 
-      device: /home/daniil/Desktop/Data/db
+      device: /home/eeeyyeeezz/Desktop/Data/db
 
 networks:
   aboba:
